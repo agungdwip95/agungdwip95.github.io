@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      .circle-thumbnail {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        /* border: 2px solid #ddd; */
+        padding: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-img-top {
+        width: 100%;
+        height: 200px; /* Anda bisa menyesuaikan ukuran ini */
+        object-fit: cover; /* Memastikan gambar terpotong secara proporsional */
+      }
+
+      .card img:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .timeline {
+        position: relative;
+        padding: 20px 0;
+      }
+
+      .timeline-item {
+        position: relative;
+        margin-bottom: 30px;
+        padding-left: 50px;
+      }
+
+      .timeline-icon {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: #009faa;
+        color: #fff;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+      }
+
+      .timeline-content {
+        padding: 10px 15px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+      }
+
+      .timeline-content h6 {
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      .timeline-content p.text-muted {
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .custom-date {
+        font-size: 1.0rem; /* Ukuran lebih besar */
+        font-weight: bold; /* Tebalkan tulisan */
+        padding: 0.5rem 1rem; /* Tambahkan ruang di sekitar teks */
+      }
+
+      @media (max-width: 768px) {
+      /* Navbar */
+      .navbar-brand {
+        font-size: 1.2rem;
+      }
+      .navbar-nav .nav-link {
+        font-size: 0.9rem;
+      }
+
+      /* Jumbotron */
+      .jumbotron .circle-thumbnail {
+        width: 150px;
+        height: 150px;
+      }
+      .jumbotron h1 {
+        font-size: 1.8rem;
+      }
+      .jumbotron p {
+        font-size: 1rem;
+      }
+
+      /* Timeline */
+      .timeline {
+        text-align: center; /* Posisikan konten timeline di tengah */
+        padding: 0; /* Hilangkan padding horizontal */
+        margin-right: 50px;
+      }
+
+      .timeline-item {
+        display: inline-block; /* Ubah menjadi blok yang sejajar */
+        text-align: left; /* Agar konten teks tetap rapi */
+        margin-bottom: 20px; /* Tambahkan jarak antar item */
+        width: 90%; /* Sesuaikan dengan lebar layar */
+      }
+
+      .timeline-content {
+        text-align: center; /* Posisikan konten di tengah */
+        margin: auto; /* Pastikan konten tetap sejajar */
+      }
+
+      .timeline-content h6, .timeline-content p {
+        text-align: center; /* Teks tetap di tengah */
+      }
+
+      .custom-date {
+        display: block; /* Tampilkan badge tanggal di baris baru */
+        margin: auto; /* Tempatkan badge di tengah */
+      }
+
+      .timeline-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+      }
+
+      /* Cards (Projects Section) */
+      .card {
+        margin-bottom: 20px; /* Jarak antar kartu */
+      }
+      .card-img-top {
+        height: 150px; /* Sesuaikan tinggi gambar pada mobile */
+      }
+
+      .about-section p {
+        font-size: 1rem; /* Sesuaikan ukuran font agar tidak terlalu kecil */
+        line-height: 1.6; /* Tambahkan spasi antar baris untuk kenyamanan membaca */
+        text-align: justify; /* Rata kiri-kanan agar lebih rapi */
+        margin-bottom: 1rem; /* Tambahkan jarak antar paragraf */
+        padding: 0 1rem; /* Berikan ruang di sisi kiri dan kanan */
+      }
+
+      .about-section {
+        padding: 1rem; /* Tambahkan padding di seluruh section */
+      }
+
+      .modal-dialog {
+        margin-top: 90px;
+      }
+
+      /* Footer or Contact Section */
+      footer {
+        text-align: center; /* Pastikan konten footer rata tengah */
+        font-size: 0.9rem;
+      }
+    }
+    </style>
+
+    <title>My Portofolio | Agung Dwi Prasetiyo</title>
+  </head>
+  <body id="home">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Agung Dwi Prasetiyo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Akhir Navbar -->
+
+    <!-- Jumbotron -->
+    <section class="jumbotron text-center">
+      <img src="img/pasfoto1.jpg" alt="Agung Dwi Prasetiyo"  class="circle-thumbnail" />
+      <h1 class="display-4 text-white"><b>Agung Dwi Prasetiyo</b></h1>
+      <p class="lead text-white"> Fresh Graduate – D4 Teknik Informatika - 2024</p>
+      <!-- Button Lihat CV -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cvModal">
+        Lihat CV
+      </button>
+
+      <!-- Button Lihat E-Sertifikat -->
+      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#sertifikatModal">
+        Lihat E-Sertifikat
+      </button>
+
+      <!-- Modal Lihat CV -->
+      <div class="modal fade" id="cvModal" tabindex="-1" aria-labelledby="cvModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="cvModalLabel">Curriculum Vitae</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+              <img src="img/cv_esertifikat/cv.jpeg" alt="CV" class="img-fluid rounded shadow" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Lihat E-Sertifikat -->
+      <div class="modal fade" id="sertifikatModal" tabindex="-1" aria-labelledby="sertifikatModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="sertifikatModalLabel">E-Sertifikat</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div id="sertifikatCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="img/cv_esertifikat/serti1.jpeg" class="d-block w-100" alt="Sertifikat 1">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/cv_esertifikat/serti2.jpeg" class="d-block w-100" alt="Sertifikat 2">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/cv_esertifikat/serti3.jpeg" class="d-block w-100" alt="Sertifikat 3">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/cv_esertifikat/serti4.jpeg" class="d-block w-100" alt="Sertifikat 4">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/cv_esertifikat/serti5.jpeg" class="d-block w-100" alt="Sertifikat 5">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/cv_esertifikat/serti6.jpeg" class="d-block w-100" alt="Sertifikat 6">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/cv_esertifikat/serti7.jpeg" class="d-block w-100" alt="Sertifikat 7">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/cv_esertifikat/serti8.jpeg" class="d-block w-100" alt="Sertifikat 8">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#sertifikatCarousel" data-bs-slide="prev" style="color: black; z-index: 1050; position: absolute; top: 50%; left: -50px; transform: translateY(-50%);">
+                  <span class="carousel-control-prev-icon" style="filter: invert(100%);" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#sertifikatCarousel" data-bs-slide="next" style="color: black; z-index: 1050; position: absolute; top: 50%; right: -50px; transform: translateY(-50%);">
+                  <span class="carousel-control-next-icon" style="filter: invert(100%);" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#ffffff"
+          fill-opacity="1"
+          d="M0,224L40,208C80,192,160,160,240,176C320,192,400,256,480,250.7C560,245,640,171,720,138.7C800,107,880,117,960,149.3C1040,181,1120,235,1200,229.3C1280,224,1360,160,1400,128L1440,96L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"
+        ></path>
+      </svg>
+    </section>
+    <!-- Akhir Jumbroton -->
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <!-- Heading Section -->
+        <div class="row text-center mb-3">
+          <div class="col">
+            <h2>About Me</h2>
+            <br><br>
+          </div>
+        </div>
+        
+        <!-- Content Section -->
+        <div class="row justify-content-center fs-5 text-center">
+          <!-- Kolom Perkenalan -->
+          <div class="col-md-4 about-section">
+            <p>
+              Perkenalkan, nama saya <strong>Agung Dwi Prasetiyo</strong>, seorang fresh graduate dari Program D4 Teknik Informatika tahun 2024.
+            </p>
+            <p>
+              Saya memiliki kemampuan dalam menguasai beberapa bahasa pemrograman, di antaranya <strong>PHP, Dart, Java,</strong> dan <strong>JavaScript</strong>, serta pengalaman dalam menggunakan framework seperti <strong>Flutter, Laravel, CodeIgniter 4</strong> dan <strong>Zend</strong>. Selain itu, saya juga berpengalaman menggunakan database <strong>MySQL</strong> dan <strong>PostgreSQL</strong>.
+            </p>
+            <p>
+              Selama masa magang, saya telah mengembangkan kemampuan teknis saya dalam membangun aplikasi web. Saya merasa kemampuan yang saya miliki sesuai dengan kebutuhan perusahaan dan dapat memberikan kontribusi positif.
+            </p>
+          </div>
+          
+          <!-- Kolom Pengalaman Magang -->
+          <div class="col-md-6">
+            <h5><strong>Pengalaman Magang</strong></h5><br>
+            <div class="timeline">
+              <!-- Magang 1 -->
+              <div class="timeline-item">
+                <div class="timeline-content">
+                  <h6><strong>PT. Dirgantara Indonesia (Persero)</strong></h6>
+                  <p class="mb-0">Software Engineer</p>
+                  <p class="text-muted"><br>
+                    <span class="badge bg-secondary p-2 custom-date">Juli - September 2019</span>
+                  </p>
+                  <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#sertiPTDIModal">
+                    Lihat E-Sertifikat
+                  </button>
+                </div>
+              </div>
+              <!-- Magang 2 -->
+              <div class="timeline-item">
+                <div class="timeline-content">
+                  <h6><strong>PT. Biofarma (Persero)</strong></h6>
+                  <p class="mb-0">Staff IT</p>
+                  <p class="text-muted"><br>
+                    <span class="badge bg-secondary p-2 custom-date">Februari - April 2024</span>
+                  </p>
+                  <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#sertiBiofarmaModal">
+                    Lihat E-Sertifikat
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Modal Lihat Serti PT. Dirgantara Indonesia -->
+          <div class="modal fade" id="sertiPTDIModal" tabindex="-1" aria-labelledby="sertiPTDIModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="sertiPTDIModalLabel">Sertifikat Magang PT. Dirgantara Indonesia</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                  <img src="img/cv_esertifikat/ptdi.jpeg" alt="Sertifikat PTDI" class="img-fluid rounded shadow" />
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Modal Lihat Serti PT. Biofarma -->
+          <div class="modal fade" id="sertiBiofarmaModal" tabindex="-1" aria-labelledby="sertiBiofarmaModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="sertiBiofarmaModalLabel">Sertifikat Magang PT. Biofarma</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                  <img src="img/cv_esertifikat/biofarma.jpeg" alt="Sertifikat Biofarma" class="img-fluid rounded shadow" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- SVG Divider -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#009faa"
+          fill-opacity="1"
+          d="M0,224L48,208C96,192,192,160,288,170.7C384,181,480,235,576,245.3C672,256,768,224,864,192C960,160,1056,128,1152,144C1248,160,1344,224,1392,256L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+        ></path>
+      </svg>
+    </section>
+    <!-- Akhir About -->
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <div class="row text-center mb-3">
+          <div class="col">
+            <h2 class="text-white">My Projects</h2><br><br>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <!-- Project Card 1 -->
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <a href="details/glyphs.html">
+                <img src="img/projects/glyphs_utama/1.png" class="card-img-top" alt="Glyphs Project" />
+              </a>
+              <div class="card-body">
+                <p class="card-text text-center">Glyphs</p>
+              </div>
+            </div>
+          </div>
+          <!-- Project Card 2 -->
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <a href="details/glyphs_podcast.html">
+                <img src="img/projects/glyphs_podcast/1.png" class="card-img-top" alt="Glyphs Podcast Project" />
+              </a>
+              <div class="card-body">
+                <p class="card-text text-center">Glyphs Podcast</p>
+              </div>
+            </div>
+          </div>
+          <!-- Project Card 3 -->
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <a href="details/ekl-nik.html">
+                <img src="img/projects/ci-klinik/1.png" class="card-img-top" alt="Eklinik Project" />
+              </a>
+              <div class="card-body">
+                <p class="card-text text-center">Eklinik</p>
+              </div>
+            </div>
+          </div>
+          <!-- Project Card 4 -->
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <a href="details/warung_agung_02.html">
+                <img src="img/projects/warung_agung_02/1.png" class="card-img-top" alt="Warung Agung 02 Project" />
+              </a>
+              <div class="card-body">
+                <p class="card-text text-center">Warung Agung 02</p>
+              </div>
+            </div>
+          </div>
+          <!-- Project Card 5 -->
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <a href="details/fluffy_store.html">
+                <img src="img/projects/fluffy_store/1.PNG" class="card-img-top" alt="Fluffy Store Project" />
+              </a>
+              <div class="card-body">
+                <p class="card-text text-center">Fluffy Store</p>
+              </div>
+            </div>
+          </div>
+          <!-- Project Card 6 -->
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <a href="details/pelatihan_sistem_informasi.html">
+                <img src="img/projects/pelatihan_sistem_informasi/1.PNG" class="card-img-top" alt="Pelatihan Sistem Informasi Project" />
+              </a>
+              <div class="card-body">
+                <p class="card-text text-center">Pelatihan Sistem Informasi</p>
+              </div>
+            </div>
+          </div>
+          <!-- Project Card 7 -->
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <a href="details/si_pk_radio_ht.html">
+                <img src="img/projects/si-pk-radio-ht/1.png" class="card-img-top" alt="SI PK Radio HT Project" />
+              </a>
+              <div class="card-body">
+                <p class="card-text text-center">Sistem Informasi PK Radio HT</p>
+              </div>
+            </div>
+          </div>
+          <!-- Project Card 8 -->
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <a href="details/sistem_informasi_pelayanan_kemenag.html">
+                <img src="img/projects/sistem_informasi_pelayanan_kemenag/1.PNG" class="card-img-top" alt="SI Pelayanan Kemenag Project" />
+              </a>
+              <div class="card-body">
+                <p class="card-text text-center">Sistem Informasi Pelayanan Kemenag</p>
+              </div>
+            </div>
+          </div>
+          <!-- Project Card 9 -->
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <a href="details/si_crm_service_center_vivo.html">
+                <img src="img/projects/si_crm_service_center_vivo/1.PNG" class="card-img-top" alt="SI CRM Service Center Vivo Project" />
+              </a>
+              <div class="card-body">
+                <p class="card-text text-center">Sistem Informasi CRM Service Center Vivo</p>
+              </div>
+            </div>
+          </div>
+          <!-- Project Card 10 -->
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <a href="details/spk_penilaian_pegawai_kpu_papua.html">
+                <img src="img/projects/spk_penilaian_pegawai_kpu_papua_native/1.PNG" class="card-img-top" alt="SPK Penilaian Pegawai KPU Papua Project" />
+              </a>
+              <div class="card-body">
+                <p class="card-text text-center">SPK Penilaian Pegawai KPU Papua</p>
+              </div>
+            </div>
+          </div>
+          <!-- Project Card 11 -->
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <a href="details/distribusi_barang.html">
+                <img src="img/projects/distribusi_barang/1.png" class="card-img-top" alt="Distribusi Barang Project" />
+              </a>
+              <div class="card-body">
+                <p class="card-text text-center">Distribusi Barang</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#ffffff"
+          fill-opacity="1"
+          d="M0,64L48,106.7C96,149,192,235,288,245.3C384,256,480,192,576,160C672,128,768,128,864,138.7C960,149,1056,171,1152,202.7C1248,235,1344,277,1392,298.7L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+        ></path>
+      </svg>
+    </section>
+    <!-- Akhir Projects -->
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="row text-center mb-3">
+          <div class="col">
+            <h2>Contact Me</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <form onsubmit="redirectToWhatsApp(event)">
+              <div class="mb-3">
+                <label for="name" class="form-label">Nama Lengkap</label>
+                <input type="text" class="form-control" id="name" required />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" required />
+              </div>
+              <div class="mb-3">
+                <label for="pesan" class="form-label">Pesan</label>
+                <textarea class="form-control" id="pesan" rows="3" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Kirim</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#212529"
+          fill-opacity="1"
+          d="M0,256L48,266.7C96,277,192,299,288,256C384,213,480,107,576,101.3C672,96,768,192,864,208C960,224,1056,160,1152,160C1248,160,1344,224,1392,256L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+        ></path>
+      </svg>
+    </section>
+    <!-- Akhir Contact -->
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center pb-5">
+      <p>Created by <i class="bi bi-emoji-sunglasses"></i> <a href="https://www.linkedin.com/in/agung-dwi-prasetiyo-b747a3147" target="_blank" class="text-white fw-bold">Agung Dwi Prasetiyo</a></p>
+    </footer>
+    <!-- Akhir Footer -->
+
+    <script>
+      function redirectToWhatsApp(event) {
+        event.preventDefault(); // Mencegah submit form default
+    
+        // Ambil nilai dari form
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const pesan = document.getElementById("pesan").value;
+    
+        // Encode URL untuk WhatsApp
+        const message = `Halo, Saya ${name}!%0AEmail: ${email}%0APesan: ${pesan}`;
+        const phoneNumber = "62895352937012"; // Nomor WhatsApp tanpa tanda +
+        const url = `https://wa.me/${phoneNumber}?text=${message}`;
+    
+        // Redirect ke WhatsApp
+        window.open(url, "_blank");
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+  
+</html>
