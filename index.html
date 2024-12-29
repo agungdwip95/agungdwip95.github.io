@@ -85,6 +85,45 @@
         padding: 0.5rem 1rem; /* Tambahkan ruang di sekitar teks */
       }
 
+      /* Card Styles */
+      .project-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-card img {
+        transition: transform 0.3s ease, filter 0.3s ease;
+      }
+
+      .project-card:hover img {
+        transform: scale(1.1); /* Zoom-in effect */
+        filter: brightness(0.5); /* Make image slightly darker */
+      }
+
+      .project-link {
+        position: relative;
+        display: block;
+      }
+
+      .hover-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+        /* text-transform: uppercase; */
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        pointer-events: none;
+      }
+
+      .project-card:hover .hover-text {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1); /* Slight zoom-in effect on text */
+      }
+
       @media (max-width: 768px) {
       /* Navbar */
       .navbar-brand {
@@ -240,6 +279,7 @@
               <h5 class="modal-title" id="sertifikatModalLabel">E-Sertifikat</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div id="mobileHint" class="text-center d-none">Geser untuk melihat lebih banyak</div>
             <div class="modal-body">
               <div id="sertifikatCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
@@ -403,121 +443,133 @@
           </div>
         </div>
         <div class="row justify-content-center">
-          <!-- Project Card 1 -->
+          <!-- Project Cards -->
+          <!-- Card 1 -->
           <div class="col-md-4 mb-3">
-            <div class="card">
-              <a href="details/glyphs.html">
+            <div class="card project-card">
+              <a href="details/glyphs.html" class="project-link">
                 <img src="img/projects/glyphs_utama/1.png" class="card-img-top" alt="Glyphs Project" />
+                <div class="hover-text">Lihat Detail</div>
               </a>
               <div class="card-body">
                 <p class="card-text text-center">Glyphs</p>
               </div>
             </div>
           </div>
-          <!-- Project Card 2 -->
+          <!-- Card 2 -->
           <div class="col-md-4 mb-3">
-            <div class="card">
-              <a href="details/glyphs_podcast.html">
+            <div class="card project-card">
+              <a href="details/glyphs_podcast.html" class="project-link">
                 <img src="img/projects/glyphs_podcast/1.png" class="card-img-top" alt="Glyphs Podcast Project" />
+                <div class="hover-text">Lihat Detail</div>
               </a>
               <div class="card-body">
                 <p class="card-text text-center">Glyphs Podcast</p>
               </div>
             </div>
           </div>
-          <!-- Project Card 3 -->
+          <!-- Card 3 -->
           <div class="col-md-4 mb-3">
-            <div class="card">
-              <a href="details/ekl-nik.html">
+            <div class="card project-card">
+              <a href="details/ekl-nik.html" class="project-link">
                 <img src="img/projects/ci-klinik/1.png" class="card-img-top" alt="Eklinik Project" />
+                <div class="hover-text">Lihat Detail</div>
               </a>
               <div class="card-body">
                 <p class="card-text text-center">Eklinik</p>
               </div>
             </div>
           </div>
-          <!-- Project Card 4 -->
+          <!-- Card 4 -->
           <div class="col-md-4 mb-3">
-            <div class="card">
-              <a href="details/warung_agung_02.html">
+            <div class="card project-card">
+              <a href="details/warung_agung_02.html" class="project-link">
                 <img src="img/projects/warung_agung_02/1.png" class="card-img-top" alt="Warung Agung 02 Project" />
+                <div class="hover-text">Lihat Detail</div>
               </a>
               <div class="card-body">
                 <p class="card-text text-center">Warung Agung 02</p>
               </div>
             </div>
           </div>
-          <!-- Project Card 5 -->
+          <!-- Card 5 -->
           <div class="col-md-4 mb-3">
-            <div class="card">
-              <a href="details/fluffy_store.html">
+            <div class="card project-card">
+              <a href="details/fluffy_store.html" class="project-link">
                 <img src="img/projects/fluffy_store/1.PNG" class="card-img-top" alt="Fluffy Store Project" />
+                <div class="hover-text">Lihat Detail</div>
               </a>
               <div class="card-body">
                 <p class="card-text text-center">Fluffy Store</p>
               </div>
             </div>
           </div>
-          <!-- Project Card 6 -->
+          <!-- Card 6 -->
           <div class="col-md-4 mb-3">
-            <div class="card">
-              <a href="details/pelatihan_sistem_informasi.html">
+            <div class="card project-card">
+              <a href="details/pelatihan_sistem_informasi.html" class="project-link">
                 <img src="img/projects/pelatihan_sistem_informasi/1.PNG" class="card-img-top" alt="Pelatihan Sistem Informasi Project" />
+                <div class="hover-text">Lihat Detail</div>
               </a>
               <div class="card-body">
                 <p class="card-text text-center">Pelatihan Sistem Informasi</p>
               </div>
             </div>
           </div>
-          <!-- Project Card 7 -->
+          <!-- Card 7 -->
           <div class="col-md-4 mb-3">
-            <div class="card">
-              <a href="details/si_pk_radio_ht.html">
+            <div class="card project-card">
+              <a href="details/si_pk_radio_ht.html" class="project-link">
                 <img src="img/projects/si-pk-radio-ht/1.png" class="card-img-top" alt="SI PK Radio HT Project" />
+                <div class="hover-text">Lihat Detail</div>
               </a>
               <div class="card-body">
                 <p class="card-text text-center">Sistem Informasi PK Radio HT</p>
               </div>
             </div>
           </div>
-          <!-- Project Card 8 -->
+          <!-- Card 8 -->
           <div class="col-md-4 mb-3">
-            <div class="card">
-              <a href="details/sistem_informasi_pelayanan_kemenag.html">
+            <div class="card project-card">
+              <a href="details/sistem_informasi_pelayanan_kemenag.html" class="project-link">
                 <img src="img/projects/sistem_informasi_pelayanan_kemenag/1.PNG" class="card-img-top" alt="SI Pelayanan Kemenag Project" />
+                <div class="hover-text">Lihat Detail</div>
               </a>
               <div class="card-body">
                 <p class="card-text text-center">Sistem Informasi Pelayanan Kemenag</p>
               </div>
             </div>
           </div>
-          <!-- Project Card 9 -->
+          <!-- Card 9 -->
           <div class="col-md-4 mb-3">
-            <div class="card">
-              <a href="details/si_crm_service_center_vivo.html">
+            <div class="card project-card">
+              <a href="details/si_crm_service_center_vivo.html" class="project-link">
                 <img src="img/projects/si_crm_service_center_vivo/1.PNG" class="card-img-top" alt="SI CRM Service Center Vivo Project" />
+                <div class="hover-text">Lihat Detail</div>
               </a>
               <div class="card-body">
                 <p class="card-text text-center">Sistem Informasi CRM Service Center Vivo</p>
               </div>
             </div>
           </div>
-          <!-- Project Card 10 -->
+          <!-- Card 10 -->
           <div class="col-md-4 mb-3">
-            <div class="card">
-              <a href="details/spk_penilaian_pegawai_kpu_papua.html">
+            <div class="card project-card">
+              <a href="details/spk_penilaian_pegawai_kpu_papua.html" class="project-link">
                 <img src="img/projects/spk_penilaian_pegawai_kpu_papua_native/1.PNG" class="card-img-top" alt="SPK Penilaian Pegawai KPU Papua Project" />
+                <div class="hover-text">Lihat Detail</div>
               </a>
               <div class="card-body">
                 <p class="card-text text-center">SPK Penilaian Pegawai KPU Papua</p>
               </div>
             </div>
           </div>
-          <!-- Project Card 11 -->
+          <!-- Card 11 -->
           <div class="col-md-4 mb-3">
-            <div class="card">
-              <a href="details/distribusi_barang.html">
+            <div class="card project-card">
+              <a href="details/distribusi_barang.html" class="project-link">
                 <img src="img/projects/distribusi_barang/1.png" class="card-img-top" alt="Distribusi Barang Project" />
+                <div class="hover-text">Lihat Detail</div>
               </a>
               <div class="card-body">
                 <p class="card-text text-center">Distribusi Barang</p>
@@ -534,7 +586,7 @@
         ></path>
       </svg>
     </section>
-    <!-- Akhir Projects -->
+    <!-- End of Projects -->
 
     <!-- Contact -->
     <section id="contact">
@@ -597,6 +649,25 @@
         // Redirect ke WhatsApp
         window.open(url, "_blank");
       }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileHint = document.getElementById("mobileHint");
+
+        function toggleMobileHint() {
+          if (window.innerWidth < 768) {
+            mobileHint.classList.remove("d-none");
+          } else {
+            mobileHint.classList.add("d-none");
+          }
+        }
+
+        // Jalankan saat halaman dimuat
+        toggleMobileHint();
+
+        // Jalankan saat ukuran layar berubah
+        window.addEventListener("resize", toggleMobileHint);
+      });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>
